@@ -1,23 +1,35 @@
-import * as React from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Importe seus componentes de tela para as tabs
-import HomeScreen from './screens/HomeScreen';
-import HistoryScreen from './screens/HistoryScreen';
+import TabRouter from './screens/TabRouter';
+import CreateAccountScreen from './screens/CreateAccountScreen';
+import RecoverScreen from './screens/RecoverScreen';
+import LoginScreen from './screens/LoginScreen';
+import AddPaymentMethod from './screens/AddPaymentMethod';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 function App() {
-  return (
+    //Depois substituir pelo zustand
+    // const [isLoggedIn, setLoggedIn] = React.useState(false);
 
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="History" component={HistoryScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{
+                headerStyle: {backgroundColor: '#121212'},
+                headerTintColor: '#FFFFFF',
+                headerTitleStyle: {fontWeight: 'bold'}
+            }}>
+                <Stack.Screen name="Login"            component={LoginScreen}         options={{ headerShown: false }} />
+                <Stack.Screen name="CriarConta"       component={CreateAccountScreen} options={{ title: "Criar conta" }} />
+                <Stack.Screen name="RecuperarConta"   component={RecoverScreen}       options={{ title: "Recuperar conta" }} />
+                <Stack.Screen name="Router"           component={TabRouter}           options={{ headerShown: false }} />
+                <Stack.Screen name="AddPaymentMethod" component={AddPaymentMethod}    options={{ title: "Adicionar método de pagamento" }} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 
 export default App;

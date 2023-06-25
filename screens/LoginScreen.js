@@ -1,0 +1,144 @@
+import React from 'react';
+import { View, Text, StyleSheet, TextInput, Switch, TouchableOpacity } from 'react-native';
+import SuccessButton from '../components/SuccesButton'
+import { useUserStore } from '../store';
+
+//simular acesso ao banco
+import db from '../db.json'
+
+export default function LoginScreen({ navigation }) {
+    const { user, ChangeUser } = useUserStore()
+
+    const [email, ChangeEmail] = React.useState('A@gmail.com'); //valores colocados aqui só pra facilitar desenvolvimento
+    const [password, Changepassword] = React.useState('12345678');
+
+    //Será usado na manutenção do token da API
+    const [isRememberMe, setRememberMe] = React.useState(false);
+    const toggleSwitch = () => setRememberMe(previousState => !previousState);
+
+    // React.useEffect(() => {
+    // },[]);
+
+    function logar() {
+        userDetails = {
+            username: email,
+            password: password
+        }
+        // userDetails = JSON.stringify(userDetails) //isso seria pra enviar para a api
+
+        achou = db.filter((user) => user.username === email && user.password === password)
+        if (achou.length === 0) {
+            console.log("Usuario não encontrado")
+            alert("Usuario não encontrado.")
+            return
+        }
+        if (!isRememberMe) {
+            ChangeEmail('')
+            Changepassword('')
+        }
+        console.log("Achou o usuário.")
+        ChangeUser(achou[0]) //Defino como usuário ativo no momento.
+
+        //Se API retornar token, prossigo, senão, alerta de erro.
+        navigation.navigate('Router')
+    }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.textContainer}>
+                <Text style={styles.text}>Seja bem-vindo(a) de volta!</Text>
+            </View>
+
+            <TextInput style={styles.input}
+                onChangeText={ChangeEmail}
+                value={email}
+                keyboardType='email-address'
+                placeholder='Email' />
+
+            <TextInput style={styles.input}
+                onChangeText={Changepassword}
+                value={password}
+                secureTextEntry={true}
+                placeholder='Senha' />
+
+            <View style={styles.switchContainer}>
+                <Switch
+                    trackColor={{ false: '#767577', true: '#b7d1ff' }}
+                    thumbColor={isRememberMe ? '#f6fff5' : 'gray'}
+                    onValueChange={toggleSwitch}
+                    value={isRememberMe}
+                />
+                <Text style={styles.switchText}>Lembre de mim</Text>
+            </View>
+
+            {/*Faltando realizar validações e bater na api para logar e avançar para*/}
+            <SuccessButton label={"Entrar"} navegarPara={() => logar()} />
+
+            <TouchableOpacity style={styles.bottomLineContainer} onPress={() => navigation.navigate('RecuperarConta')} >
+                <Text style={styles.bottomLineLabel}>Esqueceu sua senha?</Text>
+                <Text style={[styles.bottomLineLabel, styles.bottomLineBold]}>Recupere aqui.</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.bottomLineContainer} onPress={() => navigation.navigate('CriarConta')}>
+                <Text style={styles.bottomLineLabel}>Não possui conta?</Text>
+                <Text style={[styles.bottomLineLabel, styles.bottomLineBold]}>Crie sua conta.</Text>
+            </TouchableOpacity>
+        </View>
+    );
+}
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#121212',
+        gap: 10
+    },
+    textContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%',
+    },
+    text: {
+        // fontFamily: 'Cochin', //Depois ver se é realmente necessário usar fontes diferentes, pq tem q importar.
+        fontSize: 48,
+        color: '#FFFFFF',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    input: {
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 5,
+        height: 40,
+        width: '90%',
+        fontSize: 18,
+        borderColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF',
+    },
+    switchContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    switchText: {
+        color: '#FFFFFF',
+        fontSize: 18,
+    },
+
+    bottomLineContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 3,
+    },
+    bottomLineLabel:
+    {
+        color: '#FFFFFF',
+        fontSize: 14,
+    },
+    bottomLineBold: {
+        fontWeight: 'bold',
+    },
+})
