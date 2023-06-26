@@ -21,10 +21,15 @@ export default function WalletScreen({ navigation }) {
                 <Text style={styles.buttonText}>Adicionar método de pagamento</Text>
                 <AntDesign name="right" size={24} color="white" />
             </TouchableOpacity>
+
+            <View style={styles.textContainer}>
+                {payments.length > 0 ? <Text style={styles.text}>Métodos disponíveis:</Text> : <></>}
+            </View>
+            
             <View style={styles.ScrollViewContainer}>
                 <ScrollView style={styles.scrollView}>
                     {
-                        payments.map((cartao, index)=><ItemPagamento key={index} number={cartao.cardNumber.substr(-4)} status={cartao.status} name={cartao.name} vencimento={cartao.vencimento} />)
+                        payments.map((cartao, index)=><ItemPagamento key={index} number={cartao.cardNumber} status={cartao.status} name={cartao.name} vencimento={cartao.vencimento} />)
                     }
                 </ScrollView>
             </View>
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     buttonText: {
-        margin: 10,
+        margin: 5,
         fontSize: 17,
         color: "white",
     },
