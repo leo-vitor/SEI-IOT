@@ -1,7 +1,10 @@
+import 'react-native-gesture-handler';
+import { useContext } from 'react';
 import * as React from "react";
 import { View, Text, StyleSheet, DrawerLayoutAndroid, useState } from "react-native";
 import { Entypo, AntDesign } from "@expo/vector-icons";
-import { useUserStore } from "../store";
+import { TouchableOpacity } from 'react-native';
+
 
 function BookButtom() {
     return (
@@ -11,23 +14,17 @@ function BookButtom() {
     );
 }
 function Header() {
-    const {isDrawerOpen, toggleDrawer} = useUserStore();
-    const alternarDrawer = () => {
-        console.log('click')
-        console.log(isDrawerOpen)
-        // toggleDrawer();
-    };
+   
 
     return (
             <View style={styles.header}>
                 <View style={styles.headerLeft}>
                     <View>
-                        <Entypo name="menu" size={38} color="white" onPress={()=>alert("Side")} />
                     </View>
                     <Text style={styles.headerText}> SEI </Text>
                 </View>
                 <View style={styles.headerRight}>
-                    <Text style={{ marginEnd: 10, color: "white" }}> Reservar Vaga</Text>
+                    <Text style={{ marginEnd: 10, color: "black" }}> Reservar Vaga</Text>
                     <BookButtom />
                 </View>
             </View>
@@ -38,7 +35,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         top: 0,
         height: 90,
-        backgroundColor: "#121212",
+        backgroundColor: "white",
         alignContent: "space-between",
         alignItems: "center",
         justifyContent: "space-between",
@@ -48,7 +45,7 @@ const styles = StyleSheet.create({
     headerText: {
         fontFamily: "monospace",
         fontSize: 32,
-        color: "white",
+        color: "black",
     },
     headerLeft: {
         flexDirection: "row",

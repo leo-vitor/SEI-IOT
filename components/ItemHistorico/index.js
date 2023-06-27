@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 100,
         alignItems: 'flex-start',
-        borderColor: '#FFFFFF',
+        borderColor: 'black',
         borderWidth: 2,
         borderRadius: 10,
         padding: 12,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     info: {
-        color: '#FFFFFF',
+        color: 'black',
         // backgroundColor: 'gray',
         fontSize: 18
     },

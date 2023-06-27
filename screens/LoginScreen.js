@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#121212',
+        backgroundColor: 'white',
         gap: 10
     },
     textContainer: {
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     text: {
         // fontFamily: 'Cochin', //Depois ver se é realmente necessário usar fontes diferentes, pq tem q importar.
         fontSize: 48,
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         fontWeight: 'bold',
     },
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         height: 40,
         width: '90%',
         fontSize: 18,
-        borderColor: '#FFFFFF',
+        borderColor: 'black',
         backgroundColor: '#FFFFFF',
     },
     switchContainer: {
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     switchText: {
-        color: '#FFFFFF',
+        color: 'black',
         fontSize: 18,
     },
 
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     },
     bottomLineLabel:
     {
-        color: '#FFFFFF',
+        color: 'black',
         fontSize: 14,
     },
     bottomLineBold: {

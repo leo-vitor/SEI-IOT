@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 55,
         alignItems: 'flex-start',
-        borderColor: '#FFFFFF',
+        borderColor: 'black',
         borderWidth: 2,
         borderRadius: 10,
         padding: 6,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     info: {
-        color: '#FFFFFF',
+        color: 'black',
         // backgroundColor: 'gray',
         fontSize: 16,
         alignItems: 'flex-start'
